@@ -1,0 +1,10 @@
+179.43.40.253
+[Staybox] - PfSense Staybox TEMPLATE
+
+
+- Tabela com email, senha e tipo da configuração (IMAP ou POP) de cada conta de e-mail
+- Entradas DNS que são utilizadas no servidor de hospedagem atual (Ex. mail.ripf.com.br, imap.ripf.com.br, etc.)
+
+
+
+

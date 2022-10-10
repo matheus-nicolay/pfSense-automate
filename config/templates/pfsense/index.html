@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuração pfSense</title>
+    <script>
+      function addFields(){
+        // Get the element where the inputs will be added to
+        var container = document.getElementById("rules");
+        // Generate a dynamic number of inputs
+        var number = Math.floor(Math.random() * 50);
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "rule." + number;
+
+        var input2 = document.createElement("input");
+        input2.type = "text";
+        input2.name = "rule." + number;
+
+        var input3 = document.createElement("input");
+        input3.type = "text";
+        input3.name = "rule." + number;
+
+        container.appendChild(document.createTextNode("IP Externo:  "));
+        container.appendChild(input3);
+        container.appendChild(document.createElement("br"));
+
+        container.appendChild(document.createTextNode("IP Interno:  "));
+        container.appendChild(input2);
+        container.appendChild(document.createElement("br"));
+        
+        container.appendChild(document.createTextNode("Portas (separadas por virgula):  "));
+        container.appendChild(input);
+      
+        container.appendChild(document.createElement("p"));
+      }
+
+      function addFieldAlias(){
+        // Get the element where the inputs will be added to
+        var container = document.getElementById("alias");
+        // Generate a dynamic number of inputs
+        var number = Math.floor(Math.random() * 50);
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "alias." + number;
+        input.placeholder = "Nome";
+
+        var input2 = document.createElement("input");
+        input2.type = "text";
+        input2.name = "alias." + number;
+        input2.placeholder = "IP'S";
+
+        container.appendChild(input);
+        container.appendChild(document.createElement("br"));
+
+        container.appendChild(input2);
+        container.appendChild(document.createElement("br"));
+
+        container.appendChild(document.createElement("p"));
+      }
+
+      function addFieldVirtuals(){
+        // Get the element where the inputs will be added to
+        var container = document.getElementById("virtualips");
+        // Generate a dynamic number of inputs
+        var number = Math.floor(Math.random() * 50);
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "virtualIP." + number;
+        input.placeholder = "IP virtual";
+
+        var inputLan = document.createElement("input");
+        inputLan.type = "text";
+        inputLan.name = "virtualIP." + number;
+        inputLan.placeholder = "IP LAN correspondente";
+
+        container.appendChild(input);
+        container.appendChild(document.createElement("br"));
+        container.appendChild(inputLan);
+        container.appendChild(document.createElement("p"));
+
+      }
+    </script>
+</head>
+<body>
+    <form action="{% url 'sendConf' %}" name="configForm" method="post">
+      {% csrf_token %}
+      <label for="hostname">Hostname:</label><br>
+      <input type="text" name="hostname"><p></p>  
+
+      <label for="domain">Domain:</label><br>
+      <input type="text" name="domain"><p></p> 
+
+      <label for="lanIP">IP LAN:</label><br>
+      <input type="text" name="lanIP"><p></p>
+
+      <label for="wanIP">IP WAN:</label><br>
+      <input type="text" name="wanIP"><p></p>
+
+      <label for="password">Senha admin:</label><br>
+      <input type="password" name="password"><p></p>
+
+      <hr>
+        <h3>IP's Virtuais:</h3>
+
+        <div id="virtualips"></div>
+
+        <input type="button" onclick="addFieldVirtuals()" value="Adicionar IP's virtuais">
+      <hr>
+
+      <hr>
+        <h3>Alias:</h3>
+
+        <div id="alias"></div>
+
+        <input type="button" onclick="addFieldAlias()" value="Adicionar alias">
+      <hr>
+      <hr>
+
+        <h3>Direcionamentos/Regras:</h3>
+
+        <b>*Para WAN address como IP Externo, deixar campo vazio*</b><p></p>
+
+        <div id="rules"></div>
+
+        <input type="button" onclick="addFields()" value="Adicionar regra">
+
+      <hr>
+      <input type="submit" value="Cadastrar">
+    </form>
+</body>
+<script>
+
+</script>
+</html>
